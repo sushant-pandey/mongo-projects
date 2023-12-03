@@ -1,0 +1,11 @@
+import Tour from "../model/ToursModel.js";
+import {connectMongoClient, closeMongoConnection} from "./MongoConnections.js"
+
+
+await connectMongoClient();
+
+let query = Tour.find();
+query = await query.sort('price -ratingsAverage');
+
+console.log(query);
+await closeMongoConnection();
